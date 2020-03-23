@@ -11,11 +11,21 @@ class ChatController extends Controller
 {
     public function insert(Request $request)
     {
+        $count = Message::where('user_id', Auth::id())
+                ->count();
+
+        if ($count >= 11) {
+            Message::truncate();
+        }
+
+
         Message::create([
             'user_id' => Auth::id(),
             'text' => $request->input('text'),
             'time' => date('h:i:s:a')
         ]);
+
+        return redirect('home');
     }
 
 
