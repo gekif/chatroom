@@ -19,6 +19,6 @@ Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/insert', 'ChatController@insert');
+Route::post('/insert', 'ChatController@insert')->middleware('auth');
 
-Route::get('/home', 'ChatController@display');
+Route::get('/home', 'ChatController@display')->middleware('auth');
